@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-BIKE FINANCE — Turma 94</title>
+<style>
+:root{
+  --green:#18c77a; --dark:#0c1713; --muted:#64736c; --bg:#f4faf7;
+  --card:#fff; --line:#dce9e2; --blue:#168cff;
+}
+*{box-sizing:border-box;scroll-behavior:smooth}
+body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--dark)}
+a{text-decoration:none;color:inherit}
+header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{max-width:1150px;margin:auto;padding:16px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-weight:900;font-size:20px;letter-spacing:-.5px}.logo span{color:var(--green)}
+nav{display:flex;gap:22px;color:#53625c;font-size:14px;font-weight:700}
+nav a:hover{color:var(--green)}
+.hero{max-width:1150px;margin:auto;padding:75px 22px 55px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.badge{display:inline-block;padding:8px 12px;border-radius:999px;background:#dcfaec;color:#087948;font-weight:800;font-size:12px}
+h1{font-size:clamp(42px,6vw,70px);line-height:.98;letter-spacing:-3px;margin:18px 0}
+h1 span{color:var(--green)}
+.hero p{font-size:18px;line-height:1.6;color:var(--muted);max-width:620px}
+.btn{display:inline-block;background:var(--green);color:white;border:0;border-radius:13px;padding:14px 19px;font-weight:900;cursor:pointer;box-shadow:0 8px 22px #18c77a33}
+.btn.secondary{background:white;color:var(--dark);border:1px solid var(--line);box-shadow:none;margin-left:8px}
+.visual{min-height:330px;border-radius:30px;background:linear-gradient(145deg,#dffbea,#effcf6);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.bike{font-size:150px;filter:drop-shadow(0 15px 15px #0b6b4522)}
+.float{position:absolute;background:white;border:1px solid var(--line);padding:12px 15px;border-radius:14px;font-weight:800;box-shadow:0 12px 30px #143b2a14}
+.f1{top:35px;left:30px}.f2{bottom:30px;right:25px}
+.stats{max-width:1100px;margin:0 auto 65px;padding:0 22px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.stat{background:white;border:1px solid var(--line);border-radius:18px;padding:20px;text-align:center}.stat b{display:block;font-size:25px}.stat small{color:var(--muted)}
+section{max-width:1100px;margin:0 auto;padding:65px 22px}
+.title{text-align:center;margin-bottom:34px}.title h2{font-size:38px;margin:0 0 8px;letter-spacing:-1.5px}.title p{color:var(--muted)}
+.bikes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:0 8px 30px #173f2b09}
+.card .bikepic{height:120px;border-radius:16px;background:#effaf4;display:flex;align-items:center;justify-content:center;font-size:65px;margin-bottom:20px}
+.card h3{margin:5px 0;font-size:22px}.card p{color:var(--muted);line-height:1.5}
+.price{font-size:28px;font-weight:900;margin:18px 0}.price small{font-size:13px;color:var(--muted)}
+.tags{display:flex;gap:7px;flex-wrap:wrap}.tag{background:#f0f5f2;padding:6px 9px;border-radius:8px;font-size:12px;font-weight:800}
+.sim{background:#0c1713;color:white;border-radius:28px;padding:35px}
+.sim h2{margin-top:0;font-size:34px}.sim p{color:#b7c9c0}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label{font-size:13px;font-weight:800;display:block;margin-bottom:7px}input,select{width:100%;padding:13px;border-radius:11px;border:1px solid #d6e4dc;background:white;font-size:15px}
+.result{margin-top:22px;background:#15231d;border:1px solid #294238;border-radius:18px;padding:22px}
+.resultrow{display:flex;justify-content:space-between;padding:8px 0;color:#d0ddd7}.resultrow.total{font-size:24px;color:white;font-weight:900;border-top:1px solid #294238;margin-top:8px;padding-top:16px}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.plan{background:white;border:1px solid var(--line);border-radius:20px;padding:24px;text-align:center}.plan.featured{border:2px solid var(--green);transform:translateY(-6px)}.plan h3{font-size:22px}.plan strong{font-size:32px}.plan p{color:var(--muted)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.step{background:white;border:1px solid var(--line);border-radius:18px;padding:22px}.num{font-size:30px;font-weight:900;color:var(--green)}
+.about{background:#e7f8ef;border-radius:26px;padding:35px}.members{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}.member{background:white;border:1px solid #d8ebe1;border-radius:16px;padding:18px;text-align:center;font-weight:900}
+footer{background:#0c1713;color:white;padding:35px 22px;text-align:center}footer p{color:#9db1a8;font-size:13px}
+.toast{position:fixed;right:20px;bottom:20px;background:#0c1713;color:white;padding:16px 18px;border-radius:14px;box-shadow:0 15px 35px #0003;display:none;z-index:30}
+@media(max-width:800px){nav{display:none}.hero{grid-template-columns:1fr;padding-top:45px}.bikes,.plans{grid-template-columns:1fr}.stats{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.members{grid-template-columns:1fr 1fr}.form{grid-template-columns:1fr}.visual{min-height:260px}.sim{padding:25px}}
+</style>
+</head>
+<body>
+<header><div class="nav"><div class="logo">⚡ E-BIKE <span>FINANCE</span></div><nav><a href="#inicio">Início</a><a href="#bikes">Bicicletas</a><a href="#alugar">Alugar</a><a href="#planos">Planos</a><a href="#sobre">Sobre</a></nav></div></header>
+
+<main id="inicio">
+<section class="hero">
+<div>
+<span class="badge">🚲 PROJETO ESCOLAR • TURMA 94</span>
+<h1>Vá mais longe.<br><span>Pague menos.</span></h1>
+<p>Alugue sua bicicleta elétrica por algumas horas, dias ou semanas. Escolha o modelo, calcule o preço e faça sua reserva em poucos passos.</p>
+<a class="btn" href="#alugar">🚲 Alugar agora →</a>
+<a class="btn secondary" href="#bikes">Ver bicicletas</a>
+</div>
+<div class="visual"><div class="float f1">⚡ 80 km de autonomia</div><div class="bike">🚲</div><div class="float f2">✓ Reserva rápida</div></div>
+</section>
+
+<div class="stats">
+<div class="stat"><b>50–80 km</b><small>de autonomia</small></div>
+<div class="stat"><b>+120</b><small>bikes disponíveis*</small></div>
+<div class="stat"><b>24/7</b><small>simulação online</small></div>
+</div>
+
+<section id="bikes"><div class="title"><h2>Escolha sua E-Bike</h2><p>Três modelos fictícios para diferentes estilos de uso.</p></div>
+<div class="bikes">
+<div class="card"><div class="bikepic">🚲</div><h3>E-Bike City</h3><p>Leve e prática para deslocamentos urbanos.</p><div class="tags"><span class="tag">50 km</span><span class="tag">Urbana</span><span class="tag">4h</span></div><div class="price">R$ 35 <small>/dia</small></div><button class="btn" onclick="choose('city')">Escolher</button></div>
+<div class="card"><div class="bikepic">🚴</div><h3>E-Bike Urban</h3><p>Mais autonomia para trajetos maiores.</p><div class="tags"><span class="tag">60 km</span><span class="tag">Mista</span><span class="tag">5h</span></div><div class="price">R$ 42 <small>/dia</small></div><button class="btn" onclick="choose('urban')">Escolher</button></div>
+<div class="card"><div class="bikepic">⚡🚲</div><h3>E-Bike Pro</h3><p>Modelo premium para quem quer mais desempenho.</p><div class="tags"><span class="tag">80 km</span><span class="tag">Pro</span><span class="tag">6h</span></div><div class="price">R$ 50 <small>/dia</small></div><button class="btn" onclick="choose('pro')">Escolher</button></div>
+</div></section>
+
+<section id="alugar"><div class="sim">
+<h2>Simule seu aluguel 💰</h2><p>Escolha o modelo, informe os dias e veja o valor automaticamente.</p>
+<div class="form">
+<div><label>Modelo</label><select id="model" onchange="calc()"><option value="35">E-Bike City — R$ 35/dia</option><option value="42">E-Bike Urban — R$ 42/dia</option><option value="50">E-Bike Pro — R$ 50/dia</option></select></div>
+<div><label>Quantidade de dias</label><input id="days" type="number" min="1" max="30" value="7" oninput="calc()"></div>
+<div><label>Cupom</label><input id="coupon" placeholder="Digite EBIKE10" oninput="calc()"></div>
+</div>
+<div class="result">
+<div class="resultrow"><span>Subtotal</span><span id="subtotal">R$ 245,00</span></div>
+<div class="resultrow"><span>Desconto semanal</span><span id="weekly">- R$ 20,00</span></div>
+<div class="resultrow"><span>Cupom</span><span id="couponValue">R$ 0,00</span></div>
+<div class="resultrow total"><span>Total</span><span id="total">R$ 225,00</span></div>
+</div>
+<br><button class="btn" onclick="reserve()">🧾 Fazer reserva</button>
+<p style="font-size:12px;margin-bottom:0">*Simulação fictícia para fins educacionais. Não há cobrança, aluguel ou reserva real.</p>
+</div></section>
+
+<section id="planos"><div class="title"><h2>Planos</h2><p>Compare as opções e encontre a melhor para sua simulação.</p></div>
+<div class="plans">
+<div class="plan"><h3>Diária</h3><strong>R$ 35</strong><p>1 dia de aluguel</p><span class="tag">Flexível</span></div>
+<div class="plan featured"><h3>Semanal</h3><strong>R$ 225</strong><p>7 dias • economize R$ 20</p><span class="tag">⭐ Mais escolhido</span></div>
+<div class="plan"><h3>Mensal</h3><strong>R$ 800</strong><p>30 dias • economize R$ 250</p><span class="tag">Melhor economia</span></div>
+</div></section>
+
+<section><div class="title"><h2>Como funciona?</h2></div><div class="steps">
+<div class="step"><div class="num">01</div><h3>Escolha</h3><p>Selecione o modelo ideal.</p></div>
+<div class="step"><div class="num">02</div><h3>Calcule</h3><p>Escolha os dias e veja o preço.</p></div>
+<div class="step"><div class="num">03</div><h3>Reserve</h3><p>Gere uma reserva fictícia.</p></div>
+<div class="step"><div class="num">04</div><h3>Pedale</h3><p>Imagine sua viagem de E-Bike!</p></div>
+</div></section>
+
+<section id="sobre"><div class="about"><div class="title" style="margin-bottom:10px"><h2>Sobre o projeto</h2></div>
+<p>O <b>E-Bike Finance</b> é um projeto escolar que apresenta uma empresa fictícia de aluguel de bicicletas elétricas, utilizando cálculos de preços, descontos e planos para demonstrar conceitos de Matemática Financeira.</p>
+<h3>👥 Turma 94</h3><div class="members"><div class="member">Matheus</div><div class="member">Paulo</div><div class="member">Estevão</div><div class="member">Kevin</div></div>
+</div></section>
+</main>
+
+<footer><b>⚡ E-BIKE FINANCE</b><p>Projeto escolar • Turma 94 • 2026</p><p>Site totalmente fictício. Não realizamos aluguéis, pagamentos ou reservas reais.</p></footer>
+<div class="toast" id="toast"></div>
+<script>
+const money=v=>v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+function calc(){
+ let rate=Number(document.getElementById('model').value), days=Math.max(1,Number(document.getElementById('days').value)||1);
+ let subtotal=rate*days, weekly=days>=7?20:0;
+ let beforeCoupon=Math.max(0,subtotal-weekly);
+ let coupon=(document.getElementById('coupon').value||'').trim().toUpperCase()==='EBIKE10'?beforeCoupon*.10:0;
+ let total=beforeCoupon-coupon;
+ document.getElementById('subtotal').textContent=money(subtotal);
+ document.getElementById('weekly').textContent='- '+money(weekly);
+ document.getElementById('couponValue').textContent='- '+money(coupon);
+ document.getElementById('total').textContent=money(total);
+}
+function choose(type){
+ const map={city:'35',urban:'42',pro:'50'};
+ document.getElementById('model').value=map[type]; document.getElementById('alugar').scrollIntoView(); calc();
+}
+function reserve(){
+ const code='EB-'+Math.floor(10000+Math.random()*90000);
+ const t=document.getElementById('toast'); t.innerHTML='✅ Reserva fictícia criada! Código: <b>'+code+'</b>'; t.style.display='block';
+ setTimeout(()=>t.style.display='none',4000);
+}
+calc();
+</script>
+</body>
+</html>
